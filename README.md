@@ -7,6 +7,38 @@
 
 ---
 
+## 👋 For the Judges — Read This First
+
+**Recommended order to review this submission:**
+
+1. **Watch the animation** → [`simulation.gif`](simulation.gif) (embedded below in §TL;DR) — 10-second visual of baseline vs. metered traffic flow, side-by-side, with live cumulative throughput.
+2. **Read §TL;DR** — the one-table summary of the result.
+3. **Skim §1 → §3** — problem framing, the simulator, the control layer (hand-coded meter + RL design).
+4. **(Optional) Run the code** — it takes 5 seconds:
+   ```bash
+   pip install numpy matplotlib pandas
+   python run_experiments.py
+   ```
+   This reproduces `results.png` and `metrics.json` from scratch. No GPU needed.
+5. **(Optional) Regenerate the animation:**
+   ```bash
+   python make_animation.py
+   ```
+
+**Files in this repo:**
+
+| File | What it is |
+|---|---|
+| `README.md` | This report — the full preliminary submission document |
+| `simulator.py` | The cellular-automaton traffic simulator (~250 lines, pure Python + NumPy) |
+| `run_experiments.py` | Runs baseline vs. metered over 5 seeds, generates `results.png` and `metrics.json` |
+| `make_animation.py` | Generates the side-by-side animation GIF |
+| `results.png` | Headline figure: space-time diagrams, throughput curves, metric bars |
+| `simulation.gif` | Animated visualization of baseline vs. metered |
+| `metrics.json` | Machine-readable numerical results |
+
+---
+
 ## TL;DR
 
 A working multi-lane cellular-automaton traffic simulator has been built (`simulator.py`). It models a 3-lane road narrowing to 1 lane with stochastic, heterogeneous driver behaviour. Two control regimes have been run head-to-head over 5 random seeds:
@@ -22,6 +54,12 @@ The rule-based metering controller already recovers throughput by smoothing arri
 ![Results](results.png)
 
 *Top row: space-time occupancy diagrams. The dark wedge growing from the bottleneck (red dashed) is the upstream queue. Bottom-left: throughput over time, 30-step rolling average — metered run sustains higher flow through the steady state. Bottom-right: 5-seed averages.*
+
+### 🎥 Live Simulation (baseline vs. metered, side-by-side)
+
+![Simulation Animation](simulation.gif)
+
+*Top panel: baseline, no control — vehicles pile up behind the bottleneck (red dashed). Middle panel: rule-based metering — the blue dotted line is the meter, which throttles vehicles only when the merge zone is congested. Bottom panel: cumulative vehicles exited over time — the metered curve pulls ahead and stays ahead.*
 
 ---
 
@@ -186,19 +224,17 @@ The congestion length is essentially flat — the soft meter doesn't shorten the
 
 ## 5. Reproducing These Results
 
+Full repro in under a minute:
+
 ```bash
-cd repo/
-python run_experiments.py
+git clone <this-repo>
+cd <this-repo>
+pip install numpy matplotlib pandas
+python run_experiments.py     # produces results.png + metrics.json
+python make_animation.py      # produces simulation.gif
 ```
 
-This runs both regimes over 5 seeds, prints metrics, saves `metrics.json`, and writes `results.png` (the figure above). Total runtime: ~5 seconds. No GPU needed.
-
-Files in this repo:
-- `simulator.py` — the simulator (≈250 lines)
-- `run_experiments.py` — runs baseline + metered, generates plots
-- `results.png` — figure with space-time diagrams, throughput curves, metric comparison
-- `metrics.json` — numerical results
-- `README.md` — this report
+Total runtime: ~10 seconds. No GPU needed, no deep-learning dependencies (yet — PPO arrives April 10).
 
 ---
 
