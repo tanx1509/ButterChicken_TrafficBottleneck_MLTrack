@@ -238,23 +238,6 @@ Total runtime: ~10 seconds. No GPU needed, no deep-learning dependencies (yet �
 
 ---
 
-## 6. Plan to April 10
-
-| Day | Deliverable |
-|---|---|
-| **April 8 (today)** | ✅ Simulator built · ✅ Rule-based meter implemented · ✅ Baseline vs meter comparison · ✅ Plots & metrics · ✅ This report |
-| **April 9** | Wrap simulator as Gymnasium env · install Stable-Baselines3 · sanity-check PPO on a short run |
-| **April 10 morning** | Full PPO training (200k steps) · evaluation against baselines on held-out seeds · update plots with learning curve |
-| **April 10 final** | Update README with RL results · final repo submission |
-
-### Risk register
-
-- **RL fails to converge in time** → fall back to the working simulator + rule-based meter, present negative result honestly. Submission remains complete and self-contained.
-- **PPO instability** → reduce action space to binary (on/off), simplify reward.
-- **Reward hacking (agent over-throttles)** → tune γ (queue-length penalty) upward.
-
----
-
 ## 7. Mapping to Evaluation Criteria
 
 | Criterion | Where addressed |
@@ -266,5 +249,3 @@ Total runtime: ~10 seconds. No GPU needed, no deep-learning dependencies (yet �
 | **Technical depth (ML Engineering track)** | Full pipeline: simulator → control → RL env → PPO. Working code, real numbers, reproducible runs. |
 
 ---
-
-*Submitted April 8 as the preliminary screening artifact. Final submission with trained RL controller follows on April 10.*
