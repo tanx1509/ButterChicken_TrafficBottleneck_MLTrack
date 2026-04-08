@@ -1,0 +1,14 @@
+{
+  "baseline": {
+    "total_exited": 593.4,
+    "throughput_per_step": 0.989,
+    "avg_wait_steps": 147.962,
+    "avg_max_congestion_len": 133.432
+  },
+  "metered": {
+    "total_exited": 613.0,
+    "throughput_per_step": 1.022,
+    "avg_wait_steps": 144.876,
+    "avg_max_congestion_len": 134.812
+  }
+}
