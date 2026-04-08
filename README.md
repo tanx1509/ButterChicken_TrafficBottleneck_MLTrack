@@ -222,23 +222,7 @@ The congestion length is essentially flat — the soft meter doesn't shorten the
 
 ---
 
-## 5. Reproducing These Results
-
-Full repro in under a minute:
-
-```bash
-git clone <this-repo>
-cd <this-repo>
-pip install numpy matplotlib pandas
-python run_experiments.py     # produces results.png + metrics.json
-python make_animation.py      # produces simulation.gif
-```
-
-Total runtime: ~10 seconds. No GPU needed, no deep-learning dependencies (yet — PPO arrives April 10).
-
----
-
-## 7. Mapping to Evaluation Criteria
+## 6. Mapping to Evaluation Criteria
 
 | Criterion | Where addressed |
 |---|---|
